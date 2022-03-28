@@ -57,17 +57,16 @@
                         <br><br><br><thead>
                             <tr>
                                 <th>#</th>
-                                <th>Forfait étape</th>
-                                <th>Frais kilométrique</th>
-                                <th>Nuitée hôtel</th>
-                                <th>Repas restaurant</th>
+                                <th>Date</th>
+                                <th>Libellé</th>
+                                <th>Montant</th>
                             </tr>
                         </thead>
                         <tbdody>
                         {% for suivi_frais in ElementsHorsForfait %}
                             <tr>
                                 <td>{{ suivi_frais.id }}</td>
-                                <td>{{ suivi_frais.date }}</td>
+                                <td>{{ suivi_frais.date|date('m/Y') }}</td>
                                 <td>{{ suivi_frais.libelle }}</td>
                                 <td>{{ suivi_frais.montant }}</td>
                             </tr>

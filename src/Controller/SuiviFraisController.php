@@ -20,8 +20,10 @@ class SuiviFraisController extends AbstractController
     public function show():Response
     {
         $elementsforfaitises = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findAll();
+        $elementshorsforfait = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findAll();
         return $this->render('suivi_frais/index.html.twig', [
-            'ElementsForfaitises' => $elementsforfaitises
+            'ElementsForfaitises' => $elementsforfaitises,
+            'ElementsHorsForfait' => $elementshorsforfait
         ]);
     }
 }
