@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Galaxy Swiss Bourdin | Saisir fiche de frais{% endblock %}
+
+{% block body %}
+
+<head>
+    <meta charset='utf-8'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <ul>
+                    <br><div class="logo"><a href="index.php"><img src="https://clemtimber.files.wordpress.com/2017/12/logo-gsb.png?w=640" width=50%; height=50%></a></div>
+                    <br><li><div class ="user">{{app.user.firstname}}&nbsp;{{app.user.lastname}}</div></li>
+                    <li><a href="http://127.0.0.1:8000/">Accueil</a></li>
+                    <li><a href="elementsforfaitises">Saisir éléments forfaitisés</a></li>
+                    <li><a class="active" href="elementshorsforfait">Saisir éléments hors forfait</a></li>
+                    <li><a href="suivifrais">Suivi de mes frais</a></li>
+                    <li><a href="logout">Déconnexion</a></li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <br><br><br><h2>Saisir fiche de frais</h2>
+                <br><br><br><h4>Éléments hors forfait</h4>
+                {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+                <br><br><div class="formulaire">
+                    {{ form_start(ElementsHorsForfait) }}
+                        <label for="number">Date</label> {{ form_widget(ElementsHorsForfait.Date, {'attr': {'class': 'form-control'}})}}
+                        <label for="number">Libellé</label> {{ form_widget(ElementsHorsForfait.Libelle, {'attr': {'class': 'form-control'}})}}
+                        <label for="number">Montant</label> {{ form_widget(ElementsHorsForfait.Montant, {'attr': {'class': 'form-control'}})}}
+                        <br><button type="submit" class="btn btn-lg btn-success pull-right">Envoyer</button>
+                        {{ form_end(ElementsHorsForfait) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
