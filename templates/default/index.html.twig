@@ -16,11 +16,14 @@
         <div class="col-sm-3">
                 <ul>
                     <br><div class="logo"><a href="index.php"><img src="https://clemtimber.files.wordpress.com/2017/12/logo-gsb.png?w=640" width=50%; height=50%></a></div>
-                    <br><li><div class="user">{{app.user.firstname}}&nbsp;{{app.user.lastname}}</div></li>
+                    <br><li><div class="user">{{ app.user.firstname }}&nbsp;{{app.user.lastname}}</div></li>
                     <li><a class="active" href="http://127.0.0.1:8000/">Accueil</a></li>
                     <li><a href="elementsforfaitises">Saisir éléments forfaitisés</a></li>
                     <li><a href="elementshorsforfait">Saisir éléments hors forfait</a></li>
                     <li><a href="suivifrais">Suivi de mes frais</a></li>
+                    {% if is_granted('ROLE_COMPTABLE') %}
+                    <li><a href="comptabilite">Comptabilité</a></li>
+                    {% endif %}
                     <li><a href="logout">Déconnexion</a></li>
                 </ul>
         </div>

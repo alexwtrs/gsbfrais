@@ -6,12 +6,6 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
             algorithm: 'auto'
             cost: 15
-        App\Entity\Visiteur:
-            algorithm: auto
-        App\Entity\Comptable:
-            algorithm: auto
-
-
 
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
@@ -19,10 +13,8 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Comptable
-                property: id
-        # used to reload user from session & other features (e.g. switch_user)
-        # used to reload user from session & other features (e.g. switch_user)
+                class: App\Entity\User
+                property: email
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
@@ -56,4 +48,3 @@ security:
         - { path: ^/login, roles: PUBLIC_ACCESS}
         - { path: ^/reset-password, roles: PUBLIC_ACCESS}
         - { path: ^/*, roles: IS_AUTHENTICATED_FULLY}
-        - { path : ^/comptabilite, roles: PUBLIC_ACCESS}

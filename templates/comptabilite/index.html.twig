@@ -1,20 +1,35 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello ComptabiliteController!{% endblock %}
+{% if is_granted('ROLE_COMPTABLE') %}
+{% endif %}
+{% block title %}Galaxy Swiss Bourdin | Comptabilité{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<head>
+    <meta charset='utf-8'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/bts/src/Controller/ComptabiliteController.php'|file_link(0) }}">src/Controller/ComptabiliteController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/bts/templates/comptabilite/index.html.twig'|file_link(0) }}">templates/comptabilite/index.html.twig</a></code></li>
-    </ul>
-</div>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-sm-3">
+                <ul>
+                    <br><div class="logo"><a href="index.php"><img src="https://clemtimber.files.wordpress.com/2017/12/logo-gsb.png?w=640" width=50%; height=50%></a></div>
+                    <br><li><div class="user">{{app.user.firstname}}&nbsp;{{app.user.lastname}}</div></li>
+                    <li><a href="http://127.0.0.1:8000/">Accueil</a></li>
+                    <li><a class="active" href="comptabilite">Comptabilité</a></li>
+                    <li><a href="logout">Déconnexion</a></li>
+                </ul>
+        </div>
+        <div class="col-sm-4">
+            <br><br><br>
+            <h2>Comptabilité</h2>
+            <br><br>Bienvenue sur GSB Frais {{app.user.firstname}}&nbsp;{{app.user.lastname}} !
+        </div>
+        </div>
+        </div>
+    </div>
+</body>
 {% endblock %}
