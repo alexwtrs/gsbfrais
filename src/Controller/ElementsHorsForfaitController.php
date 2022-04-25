@@ -19,7 +19,7 @@ class ElementsHorsForfaitController extends AbstractController
         $this->ManagerRegistry = $ManagerRegistry;
     }
     /**
-     * @Route("/elementshorsforfait", name="app_elements_hors_forfaits")
+     * @Route("/elementshorsforfait", name="app_elements_hors_forfait")
      */
     public function index(Request $request): Response
     {

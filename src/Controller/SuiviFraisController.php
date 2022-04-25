@@ -26,4 +26,24 @@ class SuiviFraisController extends AbstractController
             'ElementsHorsForfait' => $elementshorsforfait
         ]);
     }
+    /**
+     * @Route("/suivifrais/delete/{ef}", name="app_suivi_frais_delete_ef")
+     * @Route("/suivifrais/delete/{ehf}", name="app_suivi_frais_delete_ehf")
+     */
+    public function frais_forfaitises_delete($ef):Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $fef = $em->getRepository(ElementsForfaitises::class)->find($ef);
+        $em->remove($fef);
+        $em->flush();
+        return $this->redirectToRoute('app_suivi_frais');
+    }
+    public function frais_hors_forfait_delete($ehf):Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $fehf = $em->getRepository(ElementsHorsForfait::class)->find($ehf);
+        $em->remove($fehf);
+        $em->flush();
+        return $this->redirectToRoute('app_suivi_frais');
+    }
 }

@@ -1,0 +1,19 @@
+<div class="col-sm-3">
+    <ul>
+        <br><div class="logo"><a href="index.php"><img src="https://clemtimber.files.wordpress.com/2017/12/logo-gsb.png?w=640" width=50%; height=50%></a></div>
+        <br><li><div class ="user">{{app.user.firstname}}&nbsp;{{app.user.lastname}}</div></li>
+        <li>
+        <a href = "{{path('app_default') }}" class="{{ app.request.attributes.get('_route') == 'app_default' ? 'active' }}"><i class="fas fa-route" aria-hidden="true"></i>Accueil</a>
+        </li>
+        <li>
+        <a href = "{{path('app_elements_forfaitises') }}" class="{{ app.request.attributes.get('_route') == 'app_elements_forfaitises' ? 'active' }}"><i class="fas fa-route" aria-hidden="true"></i>Saisir éléments forfaitisés</a>
+        </li>
+        <li>
+        <a href = "{{path('app_elements_hors_forfait') }}" class="{{ app.request.attributes.get('_route') == 'app_elements_hors_forfait' ? 'active' }}"><i class="fas fa-route" aria-hidden="true"></i>Saisir éléments hors forfait</a>
+        </li>
+        <li>
+        <a href = "{{path('app_suivi_frais') }}" class="{{ app.request.attributes.get('_route') == 'app_suivi_frais' ? 'active' }}"><i class="fas fa-route" aria-hidden="true"></i>Suivi de mes frais</a>
+        </li>
+        <li><a href="logout">Déconnexion</a></li>
+        </ul>
+</div> 

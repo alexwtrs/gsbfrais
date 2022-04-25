@@ -13,17 +13,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3">
-                <ul>
-                    <br><div class="logo"><a href="index.php"><img src="https://clemtimber.files.wordpress.com/2017/12/logo-gsb.png?w=640" width=50%; height=50%></a></div>
-                    <br><li><div class ="user">{{app.user.firstname}}&nbsp;{{app.user.lastname}}</div></li>
-                    <li><a href="http://127.0.0.1:8000/">Accueil</a></li>
-                    <li><a href="elementsforfaitises">Saisir éléments forfaitisés</a></li>
-                    <li><a class="active" href="elementshorsforfait">Saisir éléments hors forfait</a></li>
-                    <li><a href="suivifrais">Suivi de mes frais</a></li>
-                    <li><a href="logout">Déconnexion</a></li>
-                </ul>
-            </div>
+            {% include 'include/sidebar.html.twig' %}  
             <div class="col-4">
                 <br><br><br><h2>Saisir fiche de frais</h2>
                 <br><br><br><h4>Éléments hors forfait</h4>

@@ -47,4 +47,5 @@ security:
         - { path: ^/register, roles: PUBLIC_ACCESS}
         - { path: ^/login, roles: PUBLIC_ACCESS}
         - { path: ^/reset-password, roles: PUBLIC_ACCESS}
+        - { path: ^/comptabilite, roles: ROLE_COMPTABLE}
         - { path: ^/*, roles: IS_AUTHENTICATED_FULLY}

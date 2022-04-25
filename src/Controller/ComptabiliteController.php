@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\ElementsForfaitises;
+use App\Entity\ElementsHorsForfait;
 
 class ComptabiliteController extends AbstractController
 {
@@ -13,8 +15,11 @@ class ComptabiliteController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('comptabilite/index.html.twig', [
-            'controller_name' => 'ComptabiliteController',
+        $elementsforfaitises = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findAll();
+        $elementshorsforfait = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findAll();
+        return $this->render('suivi_frais/index.html.twig', [
+            'ElementsForfaitises' => $elementsforfaitises,
+            'ElementsHorsForfait' => $elementshorsforfait
         ]);
     }
 }
