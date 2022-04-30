@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ValidationFichesController extends AbstractController
 {
     /**
-     * @Route("/validationfiches", name="app_validation_fiches")
+     * @Route("/validation/fiches", name="app_validation_fiches")
      */
     public function index(): Response
     {

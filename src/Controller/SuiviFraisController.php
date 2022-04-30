@@ -7,12 +7,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\SuiviFrais;
-use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\ElementsForfaitises;
 use App\Entity\ElementsHorsForfait;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 class SuiviFraisController extends AbstractController
 {
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * @Route("/suivifrais", name="app_suivi_frais")
      */
@@ -26,24 +34,28 @@ class SuiviFraisController extends AbstractController
             'ElementsHorsForfait' => $elementshorsforfait
         ]);
     }
+
     /**
-     * @Route("/suivifrais/delete/{ef}", name="app_suivi_frais_delete_ef")
-     * @Route("/suivifrais/delete/{ehf}", name="app_suivi_frais_delete_ehf")
+     * @Route("/suivifrais/forfaitises/delete/{ef}", name="app_suivi_frais_forfaitises_delete_ef")
      */
     public function frais_forfaitises_delete($ef):Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $fef = $em->getRepository(ElementsForfaitises::class)->find($ef);
-        $em->remove($fef);
-        $em->flush();
+        $fef = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findOneById($ef);
+
+        $this->em->remove($fef);
+        $this->em->flush();
         return $this->redirectToRoute('app_suivi_frais');
     }
+
+    /**
+     * @Route("/suivifrais/horsforfait/delete/{ehf}", name="app_suivi_frais_horsforfait_delete_ehf")
+     */
     public function frais_hors_forfait_delete($ehf):Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $fehf = $em->getRepository(ElementsHorsForfait::class)->find($ehf);
-        $em->remove($fehf);
-        $em->flush();
+        $fehf = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findOneById($ehf);
+
+        $this->em->remove($fehf);
+        $this->em->flush();
         return $this->redirectToRoute('app_suivi_frais');
     }
 }

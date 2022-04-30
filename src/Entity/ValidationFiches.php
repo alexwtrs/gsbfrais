@@ -11,69 +11,28 @@ use Doctrine\ORM\Mapping as ORM;
 class ValidationFiches
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $elements_forfaitises_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $elements_hors_forfait_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $user_id;
+    private $idFiches;
 
     /**
      * @ORM\Column(type="string", length=30)
      */
     private $statut;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $elements_forfaitises_id;
+
+    public function getIdFiches(): ?int
     {
-        return $this->id;
+        return $this->idFiches;
     }
 
-    public function getElementsForfaitisesId(): ?int
+    public function setIdFiches(int $idFiches): self
     {
-        return $this->elements_forfaitises_id;
-    }
-
-    public function setElementsForfaitisesId(int $elements_forfaitises_id): self
-    {
-        $this->elements_forfaitises_id = $elements_forfaitises_id;
-
-        return $this;
-    }
-
-    public function getElementsHorsForfaitId(): ?int
-    {
-        return $this->elements_hors_forfait_id;
-    }
-
-    public function setElementsHorsForfaitId(int $elements_hors_forfait_id): self
-    {
-        $this->elements_hors_forfait_id = $elements_hors_forfait_id;
-
-        return $this;
-    }
-
-    public function getUserId(): ?int
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(int $user_id): self
-    {
-        $this->user_id = $user_id;
+        $this->idFiches = $idFiches;
 
         return $this;
     }
@@ -86,6 +45,18 @@ class ValidationFiches
     public function setStatut(string $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getElementsForfaitisesId(): ?string
+    {
+        return $this->elements_forfaitises_id;
+    }
+
+    public function setElementsForfaitisesId(string $elements_forfaitises_id): self
+    {
+        $this->elements_forfaitises_id = $elements_forfaitises_id;
 
         return $this;
     }

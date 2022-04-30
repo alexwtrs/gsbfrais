@@ -21,30 +21,6 @@ class SuiviFraisRepository extends ServiceEntityRepository
         parent::__construct($registry, SuiviFrais::class);
     }
 
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function add(SuiviFrais $entity, bool $flush = true): void
-    {
-        $this->_em->persist($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
-    }
-
-    /**
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function remove(SuiviFrais $entity, bool $flush = true): void
-    {
-        $this->_em->remove($entity);
-        if ($flush) {
-            $this->_em->flush();
-        }
-    }
-
     // /**
     //  * @return SuiviFrais[] Returns an array of SuiviFrais objects
     //  */
