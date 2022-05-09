@@ -44,6 +44,7 @@ class SuiviFraisController extends AbstractController
 
         $this->em->remove($fef);
         $this->em->flush();
+        $this->addFlash('supprime1', 'Élément forfaitisé supprimé.');
         return $this->redirectToRoute('app_suivi_frais');
     }
 
@@ -95,6 +96,7 @@ class SuiviFraisController extends AbstractController
 
         $this->em->remove($fehf);
         $this->em->flush();
+        $this->addFlash('supprime2', 'Élément hors forfait supprimé.');
         return $this->redirectToRoute('app_suivi_frais');
     }
 
