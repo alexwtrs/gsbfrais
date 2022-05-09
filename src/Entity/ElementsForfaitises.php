@@ -40,7 +40,12 @@ class ElementsForfaitises
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateAdd;
+    public $dateAdd;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $etat;
 
     public function __construct()
     {
@@ -108,6 +113,18 @@ class ElementsForfaitises
     public function setDateAdd(\DateTimeInterface $dateAdd): self
     {
         $this->dateAdd = $dateAdd;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
 
         return $this;
     }

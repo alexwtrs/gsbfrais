@@ -19,6 +19,15 @@
                 <br><br><br><h4>Éléments forfaitisés</h4>
                     <div class="table-responsive-sm">
                     <table class="table table-hover">
+                        {% for message in app.flashes('valide1') %}
+                        <div class="alert alert-success">{{ message }}</div>
+                        {% endfor %}
+                        {% for message in app.flashes('attente1') %}
+                        <div class="alert alert-warning">{{ message }}</div>
+                        {% endfor %}
+                        {% for message in app.flashes('rejete1') %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                        {% endfor %}
                         <br><br><br><thead>
                             <tr>
                                 <th>#</th>
@@ -26,6 +35,7 @@
                                 <th>Frais kilométrique</th>
                                 <th>Nuitée hôtel</th>
                                 <th>Repas restaurant</th>
+                                <th>Statut</th>
                                 {% if is_granted('ROLE_VISITEUR') %}
                                 <th>Action</th>
                                 {% endif %}
@@ -42,6 +52,7 @@
                                 <td>{{ suivi_frais.fraiskilometrique }}</td>
                                 <td>{{ suivi_frais.nuiteehotel }}</td>
                                 <td>{{ suivi_frais.repasrestaurant }}</td>
+                                <td>{{ suivi_frais.etat }}</td>
                                 {% if is_granted('ROLE_VISITEUR') %}
                                 <td><a href="{{ path('app_suivi_frais_forfaitises_delete_ef', {'ef':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -49,7 +60,15 @@
                                 </svg></a></td>
                                 {% endif %}
                                 {% if is_granted('ROLE_COMPTABLE') %}
-                                <td></td>
+                                <td><a href="{{ path('app_suivi_frais_forfaitises_etat_valide', {'valide11':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" color=green width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                </svg></a>
+                                <a href="{{ path('app_suivi_frais_forfaitises_etat_attente', {'attente11':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" color=orange width="16" height="16" fill="currentColor" class="bi bi-pause-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"/>
+                                </svg></a>
+                                <a href="{{ path('app_suivi_frais_forfaitises_etat_rejete', {'rejete11':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" color=red width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                </svg></a></td>
                                 {% endif %}
                             </tr>
                         {% endfor %}
@@ -59,12 +78,22 @@
                     <br><br><br><h4>Éléments hors forfait</h4>
                     <div class="table-responsive-sm">
                     <table class="table table-hover">
-                        <br><br><br><thead>
+                        {% for message in app.flashes('valide2') %}
+                        <div class="alert alert-success">{{ message }}</div>
+                        {% endfor %}
+                        {% for message in app.flashes('attente2') %}
+                        <div class="alert alert-warning">{{ message }}</div>
+                        {% endfor %}
+                        {% for message in app.flashes('rejete2') %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                        {% endfor %}
+                            <br><br><br><thead>
                             <tr>
                                 <th>#</th>
                                 <th>Date</th>
                                 <th>Libellé</th>
                                 <th>Montant</th>
+                                <th>Statut</th>
                                 {% if is_granted('ROLE_VISITEUR') %}
                                 <th>Action</th>
                                 {% endif %}
@@ -80,6 +109,7 @@
                                 <td>{{ suivi_frais.date|date('m/Y') }}</td>
                                 <td>{{ suivi_frais.libelle }}</td>
                                 <td>{{ suivi_frais.montant }}</td>
+                                <td>{{ suivi_frais.etat }}</td>
                                 {% if is_granted('ROLE_VISITEUR') %}
                                 <td><a href="{{ path('app_suivi_frais_horsforfait_delete_ehf', {'ehf':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -87,7 +117,15 @@
                                 </svg></a></td>
                                 {% endif %}
                                 {% if is_granted('ROLE_COMPTABLE') %}
-                                <td></td>
+                                <td><a href="{{ path('app_suivi_frais_horsforfait_etat_valide', {'valide1':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" color=green width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                </svg></a>
+                                <a href="{{ path('app_suivi_frais_horsforfait_etat_attente', {'attente1':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" color=orange width="16" height="16" fill="currentColor" class="bi bi-pause-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"/>
+                                </svg></a>
+                                <a href="{{ path('app_suivi_frais_horsforfait_etat_rejete', {'rejete1':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" color=red width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                </svg></a></td>
                                 {% endif %}
                             </tr>
                         {% endfor %}

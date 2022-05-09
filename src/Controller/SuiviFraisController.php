@@ -48,6 +48,45 @@ class SuiviFraisController extends AbstractController
     }
 
     /**
+     * @Route("/suivifrais/forfaitises/etat/valide{valide11}", name = "app_suivi_frais_forfaitises_etat_valide")
+    */
+    public function frais_forfaitises_valide($valide11):Response
+    {
+        $valide22 = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findOneById($valide11);
+
+        $valide22->setEtat('Validé');
+        $this->em->flush();
+        $this->addFlash('valide1', 'Élément forfaitisé validé.');
+        return $this->redirectToRoute('app_suivi_frais');
+    }
+
+    /**
+     * @Route("/suivifrais/forfaitises/etat/attente{attente11}", name = "app_suivi_frais_forfaitises_etat_attente")
+    */
+    public function frais_forfaitises_attente($attente11):Response
+    {
+        $attente22 = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findOneById($attente11);
+
+        $attente22->setEtat('En attente');
+        $this->em->flush();
+        $this->addFlash('attente1', 'Élément forfaitisé mis en attente.');
+        return $this->redirectToRoute('app_suivi_frais');
+    }
+
+    /**
+     * @Route("/suivifrais/forfaitises/etat/rejete{rejete11}", name = "app_suivi_frais_forfaitises_etat_rejete")
+    */
+    public function frais_forfaitises_rejette($rejete11):Response
+    {
+        $rejette22 = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findOneById($rejete11);
+
+        $rejette22->setEtat('Rejeté');
+        $this->em->flush();
+        $this->addFlash('rejete1', 'Élément forfaitisé rejeté.');
+        return $this->redirectToRoute('app_suivi_frais');
+    }
+
+    /**
      * @Route("/suivifrais/horsforfait/delete/{ehf}", name="app_suivi_frais_horsforfait_delete_ehf")
      */
     public function frais_hors_forfait_delete($ehf):Response
@@ -56,6 +95,45 @@ class SuiviFraisController extends AbstractController
 
         $this->em->remove($fehf);
         $this->em->flush();
+        return $this->redirectToRoute('app_suivi_frais');
+    }
+
+    /**
+     * @Route("/suivifrais/horsforfait/etat/valide{valide1}", name = "app_suivi_frais_horsforfait_etat_valide")
+    */
+    public function frais_hors_forfait_valide($valide1):Response
+    {
+        $valide2 = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findOneById($valide1);
+
+        $valide2->setEtat('Validé');
+        $this->em->flush();
+        $this->addFlash('valide2', 'Élément hors forfait validé.');
+        return $this->redirectToRoute('app_suivi_frais');
+    }
+
+    /**
+     * @Route("/suivifrais/horsforfait/etat/attente{attente1}", name = "app_suivi_frais_horsforfait_etat_attente")
+    */
+    public function frais_hors_forfait_attente($attente1):Response
+    {
+        $attente2 = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findOneById($attente1);
+
+        $attente2->setEtat('En attente');
+        $this->em->flush();
+        $this->addFlash('attente2', 'Élément hors forfait mis en attente.');
+        return $this->redirectToRoute('app_suivi_frais');
+    }
+
+    /**
+     * @Route("/suivifrais/horsforfait/etat/rejete{rejete1}", name = "app_suivi_frais_horsforfait_etat_rejete")
+    */
+    public function frais_hors_forfait_rejette($rejete1):Response
+    {
+        $rejete2 = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findOneById($rejete1);
+
+        $rejete2->setEtat('Rejeté');
+        $this->em->flush();
+        $this->addFlash('rejete2', 'Élément hors forfait rejeté.');
         return $this->redirectToRoute('app_suivi_frais');
     }
 }

@@ -32,6 +32,11 @@ class ElementsHorsForfait
      */
     private $Montant;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $Etat;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class ElementsHorsForfait
     public function setMontant(string $Montant): self
     {
         $this->Montant = $Montant;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->Etat;
+    }
+
+    public function setEtat(string $Etat): self
+    {
+        $this->Etat = $Etat;
 
         return $this;
     }
