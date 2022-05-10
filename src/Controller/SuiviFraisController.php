@@ -27,7 +27,7 @@ class SuiviFraisController extends AbstractController
 
     public function show():Response
     {
-        $elementsforfaitises = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findAll();
+        $elementsforfaitises = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findBy(['user_id'=>$this->getUser()]);
         $elementshorsforfait = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findAll();
         return $this->render('suivi_frais/index.html.twig', [
             'ElementsForfaitises' => $elementsforfaitises,

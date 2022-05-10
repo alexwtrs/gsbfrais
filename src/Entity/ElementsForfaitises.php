@@ -47,6 +47,17 @@ class ElementsForfaitises
      */
     private $etat;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="user")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $user_id;
+
     public function __construct()
     {
         $this->dateAdd = new \DateTime();
@@ -125,6 +136,30 @@ class ElementsForfaitises
     public function setEtat(string $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getUser_id(): ?int
+    {
+        return $this->user_id;
+    }
+
+    public function setUser_id(int $user_id): self
+    {
+        $this->user_id = $user_id;
 
         return $this;
     }

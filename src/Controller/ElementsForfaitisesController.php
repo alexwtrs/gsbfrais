@@ -25,6 +25,7 @@ class ElementsForfaitisesController extends AbstractController
     {
         $em = $this->ManagerRegistry->getManager();
         $ForfaitEtape = new ElementsForfaitises();
+        $ForfaitEtape->setUser($this->getUser());
         $form = $this->createForm(ElementsForfaitisesType::class, $ForfaitEtape);
         $form->handleRequest($request);
         if($request->isMethod('POST') && $form->isSubmitted() && $form->isValid()){
