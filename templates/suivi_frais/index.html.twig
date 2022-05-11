@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Galaxy Swiss Bourdin | Suivi de mes frais{% endblock %}
+{% block title %}Galaxy Swiss Bourdin | {% if is_granted('ROLE_VISITEUR') %}Suivi de mes frais{% endif %}{% if is_granted('ROLE_COMPTABLE') %}Gestion des frais{% endif %}{% endblock %}
 
 {% block body %}
 
@@ -15,7 +15,7 @@
            {% include 'include/sidebar.html.twig' %}  
             <div class="col-9">
                 <br><br><br>
-                <h2>Suivi frais</h2>
+                <h2>{% if is_granted('ROLE_VISITEUR') %}Suivi de mes frais{% endif %}{% if is_granted('ROLE_COMPTABLE') %}Gestion des frais{% endif %}</h2>
                 <br><br><br><h4>Éléments forfaitisés</h4>
                     <div class="table-responsive-sm">
                     <table class="table table-hover">
@@ -38,6 +38,9 @@
                                 <th>Frais kilométrique</th>
                                 <th>Nuitée hôtel</th>
                                 <th>Repas restaurant</th>
+                                {% if is_granted('ROLE_COMPTABLE') %}
+                                <th>Salarié</th>
+                                {% endif %}
                                 <th>Statut</th>
                                 {% if is_granted('ROLE_VISITEUR') %}
                                 <th>Action</th>
@@ -70,6 +73,7 @@
                                 <td>{{ suivi_frais.fraiskilometrique }}</td>
                                 <td>{{ suivi_frais.nuiteehotel }}</td>
                                 <td>{{ suivi_frais.repasrestaurant }}</td>
+                                <td>{{ suivi_frais.user.firstname }} {{ suivi_frais.user.lastname }}</td>
                                 <td>{{ suivi_frais.etat }}</td>
                                 <td><a href="{{ path('app_suivi_frais_forfaitises_etat_valide', {'valide11':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" color=green width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
@@ -107,6 +111,9 @@
                                 <th>Date</th>
                                 <th>Libellé</th>
                                 <th>Montant</th>
+                                {% if is_granted('ROLE_COMPTABLE') %}
+                                <th>Salarié</th>
+                                {% endif %}
                                 <th>Statut</th>
                                 {% if is_granted('ROLE_VISITEUR') %}
                                 <th>Action</th>
@@ -137,6 +144,7 @@
                                 <td>{{ suivi_frais.date|date('m/Y') }}</td>
                                 <td>{{ suivi_frais.libelle }}</td>
                                 <td>{{ suivi_frais.montant }}</td>
+                                <td>{{ suivi_frais.user.firstname }} {{ suivi_frais.user.lastname }}</td>
                                 <td>{{ suivi_frais.etat }}</td>
                                 <td><a href="{{ path('app_suivi_frais_horsforfait_etat_valide', {'valide1':suivi_frais.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" color=green width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
