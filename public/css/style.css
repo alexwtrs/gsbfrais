@@ -71,4 +71,5 @@ footer {
 
 body {
     background-color: #F3F6F9;
+    overflow-x: hidden;
 }
