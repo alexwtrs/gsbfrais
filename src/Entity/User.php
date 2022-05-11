@@ -55,9 +55,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ElementsHorsForfait::class, mappedBy="user")
+     */
+    private $user_id;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
+        $this->user_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,6 +203,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($user->getUser() === $this) {
                 $user->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ElementsHorsForfait>
+     */
+    public function getUserId(): Collection
+    {
+        return $this->user_id;
+    }
+
+    public function addUserId(ElementsHorsForfait $userId): self
+    {
+        if (!$this->user_id->contains($userId)) {
+            $this->user_id[] = $userId;
+            $userId->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserId(ElementsHorsForfait $userId): self
+    {
+        if ($this->user_id->removeElement($userId)) {
+            // set the owning side to null (unless already changed)
+            if ($userId->getUser() === $this) {
+                $userId->setUser(null);
             }
         }
 

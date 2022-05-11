@@ -25,13 +25,17 @@ class SuiviFraisController extends AbstractController
      * @Route("/suivifrais", name="app_suivi_frais")
      */
 
-    public function show():Response
+    public function showvisiteur():Response
     {
         $elementsforfaitises = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findBy(['user_id'=>$this->getUser()]);
-        $elementshorsforfait = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findAll();
+        $elementshorsforfait = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findBy(['user_id'=>$this->getUser()]);
+        $comptable1 = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findAll();
+        $comptable2 = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findAll();
         return $this->render('suivi_frais/index.html.twig', [
             'ElementsForfaitises' => $elementsforfaitises,
-            'ElementsHorsForfait' => $elementshorsforfait
+            'ElementsHorsForfait' => $elementshorsforfait,
+            'comptable1' => $comptable1,
+            'comptable2' => $comptable2,
         ]);
     }
 

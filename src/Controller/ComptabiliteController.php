@@ -13,13 +13,19 @@ class ComptabiliteController extends AbstractController
     /**
      * @Route("/comptabilite", name="app_comptabilite")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $elementsforfaitises = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findAll();
-        $elementshorsforfait = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findAll();
-        return $this->render('suivi_frais/index.html.twig', [
-            'ElementsForfaitises' => $elementsforfaitises,
-            'ElementsHorsForfait' => $elementshorsforfait
-        ]);
+        $em = $this->ManagerRegistry->getManager();
+        $ElementsHorsForfait = new ElementsHorsForfait();
+        $form = $this->createForm(ElementsHorsForfaitType::class, $ElementsHorsForfait);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($ElementsHorsForfait);
+            $em->flush();
+            $this->addFlash('success', 'Élément hors forfait transmis.');
+        }
+        return $this->render('elements_hors_forfait/index.html.twig', [
+            'ElementsHorsForfait' => $form->createView(),
+            ]);
     }
 }

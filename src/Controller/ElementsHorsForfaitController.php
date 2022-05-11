@@ -25,6 +25,7 @@ class ElementsHorsForfaitController extends AbstractController
     {
         $em = $this->ManagerRegistry->getManager();
         $ElementsHorsForfait = new ElementsHorsForfait();
+        $ElementsHorsForfait->setUser($this->getUser());
         $form = $this->createForm(ElementsHorsForfaitType::class, $ElementsHorsForfait);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
