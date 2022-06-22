@@ -72,7 +72,7 @@ class SuiviFrais
         return $this->Statut;
     }
 
-    public function setStaut(string $Statut): self
+    public function setStatut(string $Statut): self
     {
         $this->Statut = $Statut;
 
