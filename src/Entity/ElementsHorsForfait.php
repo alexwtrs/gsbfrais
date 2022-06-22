@@ -33,11 +33,6 @@ class ElementsHorsForfait
     private $Montant;
 
     /**
-     * @ORM\Column(type="string", length=10)
-     */
-    private $Etat;
-
-    /**
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="user_id")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -47,6 +42,11 @@ class ElementsHorsForfait
      * @ORM\Column(type="integer")
      */
     private $user_id;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $statut;
 
     public function getId(): ?int
     {
@@ -89,18 +89,6 @@ class ElementsHorsForfait
         return $this;
     }
 
-    public function getEtat(): ?string
-    {
-        return $this->Etat;
-    }
-
-    public function setEtat(string $Etat): self
-    {
-        $this->Etat = $Etat;
-
-        return $this;
-    }
-
     public function getUser(): ?user
     {
         return $this->user;
@@ -121,6 +109,18 @@ class ElementsHorsForfait
     public function setUser_id(int $user_id): self
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }

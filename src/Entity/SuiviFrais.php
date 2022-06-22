@@ -20,7 +20,7 @@ class SuiviFrais
     /**
      * @ORM\Column(type="string", length=10)
      */
-    private $etat;
+    private $statut;
 
     public function getId(): ?int
     {
@@ -67,14 +67,14 @@ class SuiviFrais
         return $this->Montant;
     }
 
-    public function getEtat(): ?string
+    public function getStatut(): ?string
     {
-        return $this->Etat;
+        return $this->Statut;
     }
 
-    public function setEtat(string $Etat): self
+    public function setStaut(string $Statut): self
     {
-        $this->Etat = $Etat;
+        $this->Statut = $Statut;
 
         return $this;
     }

@@ -59,7 +59,7 @@ class SuiviFraisController extends AbstractController
     {
         $valide22 = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findOneById($valide11);
 
-        $valide22->setEtat('Validé');
+        $valide22->setStatut('Validé');
         $this->em->flush();
         $this->addFlash('valide1', 'Élément forfaitisé validé.');
         return $this->redirectToRoute('app_suivi_frais');
@@ -72,7 +72,7 @@ class SuiviFraisController extends AbstractController
     {
         $attente22 = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findOneById($attente11);
 
-        $attente22->setEtat('En attente');
+        $attente22->setStatut('En attente');
         $this->em->flush();
         $this->addFlash('attente1', 'Élément forfaitisé mis en attente.');
         return $this->redirectToRoute('app_suivi_frais');
@@ -85,7 +85,7 @@ class SuiviFraisController extends AbstractController
     {
         $rejette22 = $this->getDoctrine()->getRepository(ElementsForfaitises::class)->findOneById($rejete11);
 
-        $rejette22->setEtat('Rejeté');
+        $rejette22->setStatut('Rejeté');
         $this->em->flush();
         $this->addFlash('rejete1', 'Élément forfaitisé rejeté.');
         return $this->redirectToRoute('app_suivi_frais');
@@ -111,7 +111,7 @@ class SuiviFraisController extends AbstractController
     {
         $valide2 = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findOneById($valide1);
 
-        $valide2->setEtat('Validé');
+        $valide2->setStatut('Validé');
         $this->em->flush();
         $this->addFlash('valide2', 'Élément hors forfait validé.');
         return $this->redirectToRoute('app_suivi_frais');
@@ -124,7 +124,7 @@ class SuiviFraisController extends AbstractController
     {
         $attente2 = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findOneById($attente1);
 
-        $attente2->setEtat('En attente');
+        $attente2->setStatut('En attente');
         $this->em->flush();
         $this->addFlash('attente2', 'Élément hors forfait mis en attente.');
         return $this->redirectToRoute('app_suivi_frais');
@@ -137,7 +137,7 @@ class SuiviFraisController extends AbstractController
     {
         $rejete2 = $this->getDoctrine()->getRepository(ElementsHorsForfait::class)->findOneById($rejete1);
 
-        $rejete2->setEtat('Rejeté');
+        $rejete2->setStatut('Rejeté');
         $this->em->flush();
         $this->addFlash('rejete2', 'Élément hors forfait rejeté.');
         return $this->redirectToRoute('app_suivi_frais');

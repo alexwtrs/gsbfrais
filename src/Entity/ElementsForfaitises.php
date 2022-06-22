@@ -43,11 +43,6 @@ class ElementsForfaitises
     public $dateAdd;
 
     /**
-     * @ORM\Column(type="string", length=10)
-     */
-    private $etat;
-
-    /**
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="user")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -57,6 +52,11 @@ class ElementsForfaitises
      * @ORM\Column(type="integer")
      */
     private $user_id;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $statut;
 
     public function __construct()
     {
@@ -128,18 +128,6 @@ class ElementsForfaitises
         return $this;
     }
 
-    public function getEtat(): ?string
-    {
-        return $this->etat;
-    }
-
-    public function setEtat(string $etat): self
-    {
-        $this->etat = $etat;
-
-        return $this;
-    }
-
     public function getUser(): ?user
     {
         return $this->user;
@@ -160,6 +148,18 @@ class ElementsForfaitises
     public function setUser_id(int $user_id): self
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }
